@@ -10,9 +10,12 @@ namespace TestBot
     {
         private ITelegramBotClient botClient;
 
+        private BotMessageLogic logic;
+
         public void Inizalize()
         {
-            var botClient = new TelegramBotClient(BotCredentials.BotToken);
+            botClient = new TelegramBotClient(BotCredentials.BotToken);
+            logic = new BotMessageLogic();
         }
 
         public void Start()
