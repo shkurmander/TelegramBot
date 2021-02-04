@@ -15,7 +15,7 @@ namespace TestBot
         public void Inizalize()
         {
             botClient = new TelegramBotClient(BotCredentials.BotToken);
-            logic = new BotMessageLogic();
+            logic = new BotMessageLogic(botClient);
         }
 
         public void Start()
@@ -35,8 +35,11 @@ namespace TestBot
             {
                 Console.WriteLine($"Получено сообщение в чате: {e.Message.Chat.Id}.");
 
-                await botClient.SendTextMessageAsync(
-                chatId: e.Message.Chat, text: "Вы написали:\n" + e.Message.Text);
+                // await botClient.SendTextMessageAsync(
+                // chatId: e.Message.Chat, text: "Вы написали:\n" + e.Message.Text);
+
+
+                await logic.Response(e);
             }
         }
     }

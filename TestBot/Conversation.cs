@@ -15,7 +15,31 @@ namespace TestBot
         {
             telegramChat = chat;
             telegramMessages = new List<Message>();
+        }
 
+        internal void AddMessage(Message message)
+        {
+            telegramMessages.Add(message);
+        }
+
+        internal long  GetId()
+        {
+            return telegramChat.Id;
+        }
+
+        public List<string> GetTextMessages()
+        {
+            var textMessages = new List<string>();
+
+            foreach (var message in telegramMessages)
+            {
+                if (message.Text != null)
+                {
+                    textMessages.Add(message.Text);
+                }
+            }
+
+            return textMessages;
         }
     }
 }
